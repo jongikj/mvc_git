@@ -13,7 +13,8 @@
 <body>
 	<div class="box">
 		이름으로 찾기 화면<br/>
-		<iframe src="${context}/member/image.do" class="ifrm" style="border:none"></iframe><br/>
+		<iframe src="${context}/member.do?page=image" class="ifrm" style="border:none"></iframe><br/>
+		
 		<a href="${context}/member/main.do">
 			<img src="${img}/member.png" alt="member" style="width: 50px">
 		</a>

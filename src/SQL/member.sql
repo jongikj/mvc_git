@@ -23,6 +23,7 @@ select * from MEMBER where name = '홍길동';	  -- findByNotPK
 select count(*) as count from MEMBER; -- count
 -- UPDATE
 update member set email = 'hong@test.com' where id = 'hong';
+update member set pw = '1' where id = 'hong';
 update member set email = id || '@test.com';
 update member set profile_img = 'lee.gif' where id = 'lee';
 alter table member add email varchar2(30);
@@ -30,4 +31,4 @@ alter table member add profile_img varchar2(100);
 update member set reg_date = '2016-07-15' where reg_date is null;
 update member set profile_img = id || '.jpg' where profile_img is null;
 -- DELETE
-delete from member where id = 'hong2';
+delete from member where id = 'hong';

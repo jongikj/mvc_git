@@ -13,7 +13,7 @@ public class Command implements Orderable{
 		this.directory = directory;
 		this.action = action;
 		this.page = page;
-		this.setView(page);
+		this.setView();
 	}
 	
 	public void setView(String page) {
@@ -22,14 +22,7 @@ public class Command implements Orderable{
 
 	public Command(String directory, String action, String page, String keyField, String keyword) {
 	}
-	
-	public Command(String directory, String action) {
-		this.directory = directory;
-		this.action = action;
-		this.setView();
-	}
-	
-	
+		
 	@Override
 	public void excute() {
 		
@@ -56,7 +49,7 @@ public class Command implements Orderable{
 	}
 
 	public void setView() {
-		this.view = "/WEB-INF/" + this.directory + "/" + this.action + ".jsp";
+		this.view = "/WEB-INF/" + this.directory + "/" + this.page + ".jsp";
 	}
 
 	public String getPage() {
@@ -66,5 +59,4 @@ public class Command implements Orderable{
 	public void setPage(String page) {
 		this.page = page;
 	}
-	
 }

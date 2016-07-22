@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService{
 		String msg = "";
 		int result = dao.insert(bean);
 		
-		if (result == 1 ){
+		if (result == 1){
 			msg = "회원가입 축하합니다";
 		} else {
 			msg = "";

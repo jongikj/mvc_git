@@ -35,7 +35,15 @@ public class Seperator {
 		}
 		
 		System.out.println("리스트" + list);
-			
-		return null;
+		
+		String action = list.contains("action") ? request.getParameter("action") : "move";
+		String page = list.contains("page") ? request.getParameter("page") : "main";
+		
+		System.out.println("directory : " + directory);
+		System.out.println("cmd : " + action);
+		System.out.println("page : " + page);
+		
+		command = factory.createCommand(directory, action, page);
+		return command;
 	}
 }

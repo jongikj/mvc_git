@@ -19,7 +19,8 @@ public class MemberBean implements Serializable{
 
 	private int birth;
 	
-	public MemberBean() {}
+	public MemberBean() {
+	}
 	
 	public MemberBean(String name, String id, String pw, String ssn) {
 		this.name = name;
@@ -44,7 +45,7 @@ public class MemberBean implements Serializable{
 			break;
 		}
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
