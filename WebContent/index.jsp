@@ -9,6 +9,6 @@
 	<%-- <form action="${context}/home.do">
 		<input type="submit" value="홈으로" />
 	</form> --%>
-	<a href="${context}/intro.do?cmd=move&page=home">홈으로</a>
+	<a href="${context}/home.do?cmd=move&page=home">홈으로</a>
 </body>
 </html>

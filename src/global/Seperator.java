@@ -1,5 +1,9 @@
 package global;
 
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,14 +19,23 @@ public class Seperator {
 	
 	public static Command init(HttpServletRequest request, HttpServletResponse response){
 		String path = request.getServletPath();
-		String directory = path.split("/")[1];
-		String temp = path.split("/")[2];
-		String  action = temp.substring(0, temp.indexOf("."));
-		String page = request.getParameter("page");
-		if (page.equals("")) {
-			page = "main";
+		System.out.println("패스 " + path);
+		String temp0 = path.split("/")[0];
+		System.out.println("템프 0 " + temp0);
+		String temp = path.split("/")[1];
+		System.out.println("템프 " + temp);
+		String directory = temp.substring(0, temp.indexOf("."));
+		System.out.println("디렉토리 : " + directory);
+		System.out.println("====================================");
+		
+		Enumeration<String> en = request.getParameterNames();
+		List<String> list = new ArrayList<String>();
+		while(en.hasMoreElements()){
+			list.add((String) en.nextElement());
 		}
 		
-		return factory.createCommand(directory, page);
+		System.out.println("리스트" + list);
+			
+		return null;
 	}
 }
