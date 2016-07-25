@@ -1,20 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="member.MemberService" %>
-    <%@page import="member.MemberServiceImpl" %>
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>회원수</title>
-	<link rel="stylesheet" href="${css}/global.css" />
-</head>
-<body>
+<jsp:include page="../global/top.jsp"/>
+<jsp:include page="../global/header.jsp"/>
+<jsp:include page="../global/navi.jsp"/>
 	<div class="box">
-		<%
-		MemberService service = MemberServiceImpl.getInstance();
-		%>
-		<h1>회원은 <%=service.count() %>명 입니다.</h1>
+		<h1>회원은 <span style="color: green; font-size: 50px">${count}명 </span>입니다.</h1>
 		<a href="${context}/member/main.do">
 			<img src="${img}/member.png" alt="member" style="width: 50px">
 		</a>
@@ -22,5 +12,5 @@
 			<img src="${img}/home.png" alt="home" style="width: 50px"/>
 		</a>
 	</div>
-</body>
-</html>
+<jsp:include page="../global/footer.jsp"/>	
+<jsp:include page="../global/end.jsp"/>

@@ -15,8 +15,7 @@ import javax.swing.JOptionPane;
 public class MemberBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	private String id, pw, name, regDate, gender, ssn, profileImg, email;
-
+	private String id, pw, name, regDate, gender, ssn, profileImg, email, phone;
 	private int birth;
 	
 	public MemberBean() {
@@ -151,9 +150,25 @@ public class MemberBean implements Serializable{
 		return this.birth;
 	}
 
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+/*
 	@Override
 	public String toString() {
 		return "id=" + id + ", pw=" + pw + ", 이메일=" + email + ", 이름=" + name + ", 등록일=" + regDate + ", 성별=" + gender
 				+ ", 주민번호=" + ssn + ", 나이=" + birth;
+	}
+*/
+
+	@Override
+	public String toString() {
+		return "MemberBean [id=" + id + ", pw=" + pw + ", name=" + name + ", regDate=" + regDate + ", gender=" + gender
+				+ ", ssn=" + ssn + ", profileImg=" + profileImg + ", email=" + email + ", phone=" + phone + ", birth="
+				+ birth + "]";
 	}
 }

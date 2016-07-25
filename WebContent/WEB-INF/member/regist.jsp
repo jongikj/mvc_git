@@ -13,6 +13,7 @@
 			<span class="meta">비밀번호</span><input type="text" name="pw"/><br/>
 			<span class="meta">SSN</span><input type="text" name="ssn"/><br /> 
 			<span class="meta">이메일</span><input type="text" name="email"/><br />
+			<span class="meta">전화번호</span><input type="text" name="phone"/><br />
 			<span class="meta">전공</span><br /><br />
 			<input type="radio" name="major" value="computer" checked/> 컴퓨터공학과
 			<input type="radio" name="major" value="mgmt" /> 경영학과
@@ -27,6 +28,7 @@
 			<input type="checkbox" name="subject" value="delphi"/> 델파이<br />
 			<br /><br /><br />
 			<input type="hidden" name="action" value="regist" />
+			<input type="hidden" name="page" value="login" />
 			<input type="hidden" name="directory" value="member" />
 			<input type="submit" value="회원가입"/>		
 			<input type="reset" value="취소"/>

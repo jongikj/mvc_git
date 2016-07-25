@@ -44,8 +44,8 @@ public class MemberDAO {
 	
 	public int insert(MemberBean bean){
 		int result = 0;
-		String sql = "insert into member(id, pw, name, reg_date, ssn, email)"
-				+ " values(?, ?, ?, ?, ?, ?)";
+		String sql = "insert into member(id, pw, name, reg_date, ssn, email, profile_img, phone)"
+				+ " values(?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getId());
@@ -54,6 +54,8 @@ public class MemberDAO {
 			pstmt.setString(4, bean.getRegDate());
 			pstmt.setString(5, bean.getSsn());
 			pstmt.setString(6, bean.getEmail());
+			pstmt.setString(7, "default.png");
+			pstmt.setString(8, bean.getPhone());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -134,11 +136,6 @@ public class MemberDAO {
 		List<MemberBean> list = new ArrayList<MemberBean>();
 		
 		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-			con = DriverManager.getConnection(
-					Constants.ORACLE_URL,
-					Constants.USER_ID,
-					Constants.USER_PW);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
 			
@@ -148,7 +145,8 @@ public class MemberDAO {
 				tempBean.setPw(rs.getString("PW"));
 				tempBean.setName(rs.getString("NAME"));
 				tempBean.setEmail(rs.getString("EMAIL"));
-				tempBean.setGenderAndBirth(rs.getString("SSN"));
+//				tempBean.setGenderAndBirth(rs.getString("SSN"));
+				tempBean.setPhone(rs.getString("PHONE"));
 				tempBean.setRegDate(rs.getString("REG_DATE"));
 				tempBean.setProfileImg(rs.getString("PROFILE_IMG"));
 				list.add(tempBean);
@@ -162,23 +160,14 @@ public class MemberDAO {
 	
 	//findByPK
 	public MemberBean findById(String id) {
-		String sql = "select * from member where id = '" + id + "'";
-		MemberBean temp = new MemberBean();
+		String sql = "select * from member where id = ?";
+		MemberBean temp = null;
 		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-			con = DriverManager.getConnection(
-					Constants.ORACLE_URL,
-					Constants.USER_ID,
-					Constants.USER_PW);
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next()){
-//				temp = new MemberBean(
-//						rs.getString("NAME"),
-//						rs.getString("ID"),
-//						rs.getString("PW"),
-//						rs.getString("SSN"));
-//				temp.setRegDate(rs.getString("REG_DATE"));
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				temp = new MemberBean();
 				temp.setId(rs.getString("ID"));
 				temp.setPw(rs.getString("PW"));
 				temp.setName(rs.getString("NAME"));
@@ -187,9 +176,9 @@ public class MemberDAO {
 				temp.setGenderAndBirth(rs.getString("SSN"));
 				temp.setEmail(rs.getString("EMAIL"));
 				temp.setProfileImg(rs.getString("PROFILE_IMG"));
+				temp.setPhone(rs.getString("PHONE"));
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return temp;
