@@ -7,7 +7,7 @@
 		<h1>내 정보 보기</h1><br/>
 		<table id="member_detail">
 			<tr>
-				<td rowspan="4" width="30%"><img src="${img}/member/${user.profileImg}" alt="W3Schools.com" width="104" height="142"><br/></td>
+				<td rowspan="5" width="30%"><img src="${img}/member/${user.img}" alt="W3Schools.com" width="104" height="142"><br/></td>
 				<td style="width: 20%" class="font_bold bg_color_yellow">ID</td>
 				<td style="width: 40%">${user.id}</td>
 			</tr>
@@ -17,11 +17,20 @@
 			</tr>
 			<tr>
 				<td class="font_bold bg_color_yellow">성별</td>
-				<td>${user.gender}</td>
+				<td><%-- ${user.gender} --%></td>
 			</tr>
 			<tr>
 				<td class="font_bold bg_color_yellow">이메일</td>
 				<td>${user.email}</td>
+			</tr>
+			<tr>
+				<td class="font_bold bg_color_yellow">전공과목</td>
+				<td>${user.major}</td>
+			</tr>
+			<tr>
+			<tr>
+				<td class="font_bold bg_color_yellow">수강과목</td>
+				<td colspan="2">${user.subjects}</td>
 			</tr>
 			<tr>
 				<td class="font_bold bg_color_yellow">SSN</td>
@@ -29,7 +38,7 @@
 			</tr>
 			<tr>
 				<td class="font_bold bg_color_yellow">등록일</td>
-				<td colspan="2">${user.regDate}</td>
+				<td colspan="2">${user.reg}</td>
 			</tr>
 		</table>
         <input type="hidden" name="action" value="find_by_id" />

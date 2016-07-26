@@ -10,7 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import global.DispatcherServlet;
+import global.ParamMap;
 import global.Seperator;
+import subject.SubjectBean;
+import subject.SubjectMember;
+import subject.SubjectService;
+import subject.SubjectServiceImpl;
 
 //{} 안에 넣어주면 String 배열 (객체)화가 된다
 @WebServlet("/member.do")
@@ -23,6 +28,9 @@ public class MemberController extends HttpServlet {
 		HttpSession session = request.getSession();
 		Seperator.init(request, response);
 		MemberService service = MemberServiceImpl.getInstance();
+		SubjectService subService = SubjectServiceImpl.getInstance();
+		SubjectBean subject = new SubjectBean();
+		SubjectMember sm = new SubjectMember();
 		MemberBean bean = new MemberBean();
 		switch (Seperator.command.getAction()) {
 		case "move":
@@ -36,15 +44,15 @@ public class MemberController extends HttpServlet {
 		case "login":
 			bean.setId(request.getParameter("id"));
 			bean.setPw(request.getParameter("pw"));
-			bean = service.login(bean);
+			sm = service.login(bean);
 			if (bean.getId().equals("fail")) {
 				System.out.println("컨트롤러 : 로그인 실패");
 				Seperator.command.setPage("login");
 				Seperator.command.setView();
 			} else {
 				System.out.println("컨트롤러 : 로그인 성공");
-				request.setAttribute("user", bean);
-				session.setAttribute("user", bean);
+				request.setAttribute("user", sm);
+				session.setAttribute("user", sm);
 				Seperator.command.setDirectory("global");
 				Seperator.command.setView();
 			}
@@ -57,9 +65,12 @@ public class MemberController extends HttpServlet {
 			bean.setName(request.getParameter("name"));
 			bean.setRegDate();
 			bean.setSsn(request.getParameter("ssn"));
-			bean.setGenderAndBirth(request.getParameter("ssn"));
+//			bean.setGenderAndBirth(request.getParameter("ssn"));
 			bean.setPhone(request.getParameter("phone"));
 			bean.setEmail(request.getParameter("email"));
+			System.out.println("전공 : " + request.getParameter("major"));
+			System.out.println("수강과목 : " + ParamMap.getValue(request, "subject").toString());
+			
 			if(service.regist(bean).equals("fail")){
 				System.out.println("회원가입 실패");
 				Seperator.command.setDirectory(request.getParameter("directory"));
@@ -67,6 +78,10 @@ public class MemberController extends HttpServlet {
 				Seperator.command.setView();
 			} else {
 				System.out.println("회원가입 성공");
+				subject.setId(request.getParameter("id"));
+				subject.setMajor(request.getParameter("major"));
+				subject.setSubjects(ParamMap.getValue(request, "subject").toString());
+				subService.insert(subject);
 				Seperator.command.setDirectory(request.getParameter("directory"));
 				Seperator.command.setPage(request.getParameter("page"));
 				Seperator.command.setView();
@@ -114,6 +129,7 @@ public class MemberController extends HttpServlet {
 			
 		case "find_by_name":
 			service.findBy(request.getParameter("keyword"));
+			request.setAttribute("list", service.findBy(request.getParameter("keyword")));
 			DispatcherServlet.send(request, response, Seperator.command);
 			break;
 			

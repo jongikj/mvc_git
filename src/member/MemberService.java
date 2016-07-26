@@ -6,6 +6,7 @@ package member;
 import java.util.List;
 
 import global.CommonService;
+import subject.SubjectMember;
 
 /**
  * @date   :2016. 6. 17.
@@ -19,7 +20,7 @@ public interface MemberService extends CommonService{
 	public void delete(MemberBean bean);
 	public MemberBean findById(String id);
 	public List<MemberBean> findByName(String findName);
-	public MemberBean login(MemberBean bean);
+	public SubjectMember login(MemberBean bean);
 	public boolean existId(String id);
 	public MemberBean findBy();
 	public void logout(MemberBean bean);

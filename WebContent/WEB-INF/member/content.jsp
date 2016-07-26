@@ -9,7 +9,7 @@
 		<ol>
 			<li><a href="${context}/member.do?page=regist">회원가입</a></li>
 			<li><a href="${context}/member.do?action=move&page=detail">내정보보기</a></li>
-			<li><a href="${context}/member.do?action=move&page=update">내정보수정</a></li>
+			<li><a href="${context}/member.do?page=update">내정보수정</a></li>
 			<li><a href="${context}/member.do?page=delete">탈퇴</a></li>
 			<li><a href="${context}/member.do?page=login">로그인</a></li>
 			<li><a href="${context}/member.do?page=logout">로그아웃</a></li>

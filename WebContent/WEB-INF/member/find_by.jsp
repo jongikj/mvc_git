@@ -14,7 +14,7 @@
 	</form>
 	<h1>이름 검색</h1>
 	<form action="${context}/member.do" method="get">
-	    <input type="text" name="keyword" placeholder="검색할 ID"/>
+	    <input type="text" name="keyword" placeholder="검색할 이름"/>
 	    <input type="hidden" name="action" value="find_by_name"/>
 	    <input type="hidden" name="page" value="list"/>
 	    <input type="submit" value="이름검색"/>

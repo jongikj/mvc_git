@@ -186,26 +186,24 @@ public class MemberDAO {
 	
 	//findByNotPK
 	public List<MemberBean> findByName(String name) {
-		String sql = "select * from member where name = '" + name + "'";
+		String sql = "select * from member where name = ?";
 		List<MemberBean> list = new ArrayList<MemberBean>();
-		MemberBean tempBean = null;
 		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-			con = DriverManager.getConnection(
-					Constants.ORACLE_URL,
-					Constants.USER_ID,
-					Constants.USER_PW);
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(sql);
-			
-			while (rs.next()) {
-				tempBean = new MemberBean(
-						rs.getString("NAME"), 
-						rs.getString("ID"), 
-						rs.getString("PW"),
-						rs.getString("SSN"));
-				tempBean.setRegDate(rs.getString("REG_DATE"));
-				list.add(tempBean);
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				MemberBean temp = new MemberBean();
+				temp.setId(rs.getString("ID"));
+				temp.setPw(rs.getString("PW"));
+				temp.setName(rs.getString("NAME"));
+				temp.setRegDate(rs.getString("REG_DATE"));
+				temp.setSsn(rs.getString("SSN"));
+				temp.setGenderAndBirth(rs.getString("SSN"));
+				temp.setEmail(rs.getString("EMAIL"));
+				temp.setProfileImg(rs.getString("PROFILE_IMG"));
+				temp.setPhone(rs.getString("PHONE"));
+				list.add(temp);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

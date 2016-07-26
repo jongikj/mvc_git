@@ -5,6 +5,9 @@ import java.util.Map;
 
 import bank.AccountService;
 import bank.AccountServiceImpl;
+import subject.SubjectBean;
+import subject.SubjectDAO;
+import subject.SubjectMember;
 
 /**
  * @date   :2016. 6. 20.
@@ -13,10 +16,10 @@ import bank.AccountServiceImpl;
  * @story  :
 */
 public class MemberServiceImpl implements MemberService{
-	MemberBean session;	
-	MemberBean st = null;
-	MemberDAO dao = MemberDAO.getInstance();	// 4.DAO의 getInstance() 메소드를 호출한다 (싱글톤 패턴)
-	AccountService accService = AccountServiceImpl.getInstance();
+	private MemberBean session;	
+	private MemberDAO dao = MemberDAO.getInstance();	// 4.DAO의 getInstance() 메소드를 호출한다 (싱글톤 패턴)
+	private SubjectDAO subjDao = SubjectDAO.getInstance();
+	private AccountService accService = AccountServiceImpl.getInstance();
 	private static MemberServiceImpl instance = new MemberServiceImpl();
 	
 	private MemberServiceImpl() {
@@ -83,7 +86,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<?> findBy(String keyword) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.findByName(keyword);
 	}
 
 	@Override
@@ -92,15 +95,28 @@ public class MemberServiceImpl implements MemberService{
 		return null;
 	}
 	
-	public MemberBean login(MemberBean bean) {
+	public SubjectMember login(MemberBean bean) {
+		SubjectMember sm = new SubjectMember();
+		SubjectBean sb = new SubjectBean();
 		if (dao.login(bean)) {
 			session = dao.findById(bean.getId());
 			accService.map();
+			sb = subjDao.findById(bean.getId());
+			sm.setEmail(session.getEmail());
+			sm.setId(session.getId());
+			sm.setImg(session.getProfileImg());
+			sm.setMajor(sb.getMajor());
+			sm.setName(session.getName());
+			sm.setPhone(session.getPhone());
+			sm.setPw(session.getPw());
+			sm.setReg(session.getRegDate());
+			sm.setSsn(session.getSsn());
+			sm.setSubjects(sb.getSubjects());
 		} else {
-			session.setId("fail");
+			sm.setId("fail");
 		}
-		System.out.println("서비스 로그인 결과 : " + session.getId());
-		return session;
+		System.out.println("서비스 로그인 결과 : " + sm.getId());
+		return sm;
 	}
 
 	@Override
