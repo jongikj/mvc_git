@@ -8,6 +8,8 @@ create table subject(
 	constraint subject_member_fk foreign key (id) references member(id) on delete cascade --fk선언
 );
 
+select * from subject;
+
 insert into subject(subj_seq, major, subjects, id) values(subj_seq.nextval, 'computer', 'java, sql, cpp', 'hong');
 
 create or replace view subject_member as select 

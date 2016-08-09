@@ -105,13 +105,13 @@ public class MemberServiceImpl implements MemberService{
 			sm.setEmail(session.getEmail());
 			sm.setId(session.getId());
 			sm.setImg(session.getProfileImg());
-			sm.setMajor(sb.getMajor());
+     		sm.setMajor(sb.getMajor()); 
 			sm.setName(session.getName());
 			sm.setPhone(session.getPhone());
 			sm.setPw(session.getPw());
 			sm.setReg(session.getRegDate());
 			sm.setSsn(session.getSsn());
-			sm.setSubjects(sb.getSubjects());
+			sm.setSubjects(sb.getSubjects()); 
 		} else {
 			sm.setId("fail");
 		}

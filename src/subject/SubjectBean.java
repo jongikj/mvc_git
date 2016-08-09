@@ -44,4 +44,9 @@ public class SubjectBean implements Serializable{
 	public void setSubjects(String subjects) {
 		this.subjects = subjects;
 	}
+
+	@Override
+	public String toString() {
+		return "SubjectBean [id=" + id + ", major=" + major + ", subjects=" + subjects + ", subjseq=" + subjseq + "]";
+	}
 }

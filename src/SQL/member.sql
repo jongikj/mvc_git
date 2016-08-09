@@ -38,4 +38,4 @@ alter table member modify phone varchar2(20);
 update member set reg_date = '2016-07-15' where reg_date is null;
 update member set profile_img = id || '.jpg' where profile_img is null;
 -- DELETE
-delete from member where id = 'son';
+delete from member where pw = '2';

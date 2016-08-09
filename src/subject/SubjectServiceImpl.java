@@ -18,6 +18,7 @@ public class SubjectServiceImpl implements SubjectService{
 
 	@Override
 	public void insert(SubjectBean s) {
+		System.out.println("서브젝트 서비스 : " + s);
 		dao.insert(s);
 	}
 }

@@ -32,6 +32,7 @@ public class MemberController extends HttpServlet {
 		SubjectBean subject = new SubjectBean();
 		SubjectMember sm = new SubjectMember();
 		MemberBean bean = new MemberBean();
+		
 		switch (Seperator.command.getAction()) {
 		case "move":
 			DispatcherServlet.send(request, response, Seperator.command);
@@ -69,7 +70,7 @@ public class MemberController extends HttpServlet {
 			bean.setPhone(request.getParameter("phone"));
 			bean.setEmail(request.getParameter("email"));
 			System.out.println("전공 : " + request.getParameter("major"));
-			System.out.println("수강과목 : " + ParamMap.getValue(request, "subject").toString());
+			System.out.println("수강과목 : " + ParamMap.getValue(request, "subject"));
 			
 			if(service.regist(bean).equals("fail")){
 				System.out.println("회원가입 실패");
@@ -80,7 +81,8 @@ public class MemberController extends HttpServlet {
 				System.out.println("회원가입 성공");
 				subject.setId(request.getParameter("id"));
 				subject.setMajor(request.getParameter("major"));
-				subject.setSubjects(ParamMap.getValue(request, "subject").toString());
+				subject.setSubjects(ParamMap.getValue(request, "subject"));
+				System.out.println(subject);
 				subService.insert(subject);
 				Seperator.command.setDirectory(request.getParameter("directory"));
 				Seperator.command.setPage(request.getParameter("page"));

@@ -21,8 +21,7 @@ public class SubjectDAO {
 	PreparedStatement pstmt;
 	ResultSet rs;
 	private static SubjectDAO instance = new SubjectDAO();
-	SubjectService service = SubjectServiceImpl.getInstance();
-
+	
 	private SubjectDAO() {
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
@@ -42,13 +41,13 @@ public class SubjectDAO {
 	
 	public void insert(SubjectBean sub){
 		int result = 0;
-		String sql = "insert into subject(subj_seq, id, major, subjects)"
-				+ " values(subj_seq.nextval,? ,? ,?)";
+		String sql = "insert into subject(subj_seq,major,subjects,id)"
+				+ " values(subj_seq.nextval,?,?,?)";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, sub.getId());
-			pstmt.setString(2, sub.getMajor());
-			pstmt.setString(3, sub.getSubjects());
+			pstmt.setString(1, sub.getMajor());
+			pstmt.setString(2, sub.getSubjects());
+			pstmt.setString(3, sub.getId());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

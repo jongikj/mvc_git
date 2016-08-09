@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.swing.JOptionPane;
-
 /**
  * @date   :2016. 6. 16.
  * @author :장종익
@@ -31,9 +29,8 @@ public class MemberBean implements Serializable{
 		String[] arr = new String[2];
 		arr = ssn.split("-");
 
-		if (Integer.parseInt(arr[1]) == 0 || Integer.parseInt(arr[1]) == 9) {
-			JOptionPane.showMessageDialog(null, "뒷자리에 0이나 9는 올 수 없습니다.");
-		}
+//		if (Integer.parseInt(arr[1]) == 0 || Integer.parseInt(arr[1]) == 9) {
+//		}
 
 		switch (Integer.parseInt(arr[1]) % 2) {
 		case 1:
