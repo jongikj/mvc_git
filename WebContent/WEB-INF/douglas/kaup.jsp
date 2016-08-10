@@ -5,7 +5,7 @@
 <script src="${js}/douglas.js"></script>
 <link rel="stylesheet" href="${css }/douglas.css" />
 <div id="container">
-<section id="formbox"> 
+<section class="formbox"> 
     <form name="form">
         <p>카우프 지수 구하기</p>
         <p>이름</p> <input type="text" name="name" id="name" />

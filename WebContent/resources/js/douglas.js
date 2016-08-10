@@ -1,3 +1,34 @@
+var context = {
+	name : '',
+	setContext : function(context){
+		this.name = context;
+	},
+	init : function(context) {
+		var bt_bom = document.querySelector('#bt_bom');
+		var bt_dom = document.querySelector('#bt_dom');
+		var bt_kaup = document.querySelector('#bt_kaup');
+		var bt_creator = document.querySelector('#bt_creator');
+		
+		console.log('CONTEXT : ' + context);
+		this.setContext(context);
+		console.log('CONTEXT : ' + this.name);
+		
+		bt_bom.addEventListener('click', bom_go, false);
+		bt_dom.addEventListener('click', dom_go, false);
+		bt_kaup.addEventListener('click', kaup_go, false);
+		bt_creator.addEventListener('click', creator_go, false);
+	},
+	bom_go : function(){
+		location.href = getContext() + '/douglas.do?page=bom'; 		
+	},
+	dom_go : function(){
+		location.href = getContext() + '/douglas.do?page=dom';		
+	},
+	creator_go : function(){
+		location.href = getContext() + '/douglas.do?page=creator';		
+	}
+};
+
 var context = '';
 
 function getContext(){
@@ -8,27 +39,71 @@ function setContext(context){
 	this.context = context;
 }
 
-function init(context){
-	var bt_bom = document.querySelector('#bom');
-	var bt_dom = document.querySelector('#dom');
-	var bt_kaup = document.querySelector('#kaup');
-	
-	console.log('CONTEXT : ' + context);
-	this.setContext(context);
-	console.log('CONTEXT : ' + this.getContext());
-	
-	bt_bom.addEventListener('click', bom_go, false);
-	bt_dom.addEventListener('click', dom_go, false);
-	bt_kaup.addEventListener('click', kaup_go, false);
-	
+function creator_init(){ 
+    document.querySelector('#bt_spec_show').addEventListener('click', member_spec, false);
+    document.querySelector('#bt_make_account').addEventListener('click', account_spec, false);
+    document.querySelector('#bt_deposit').addEventListener('click', account_deposit, false);
+    document.querySelector('#bt_withdraw').addEventListener('click', account_withdraw, false);
 }
 
-function bom_go(){
-	location.href = getContext() + '/douglas.do?page=bom';
+function account_spec(){  //JSON 표기법 (객체 리터럴)
+	var account = {
+		account_no : 0,
+		money : 0
+	}
+	account.account_no = Math.floor(Math.random() * 899999) + 100000;
+	document.querySelector('#result_account').innerHTML = account.account_no;
+	document.querySelector('#rest_money').innerHTML = account.money;
 }
 
-function dom_go(){
-	location.href = getContext() + '/douglas.do?page=dom';
+function member_spec(){
+	var member = new Object();
+	member.name = document.querySelector('#name').value;
+	var ssn = document.querySelector('#ssn').value;
+	var ssn_sec = parseInt(ssn.substring(7, 8));
+	member.age = 0;
+	member.gender = '';
+	var date = new Date().getFullYear();
+	var ssn_sub = ssn.substring(0, 6) / 10000;
+	
+	switch(ssn_sec){
+    	case 1: case 5: 
+		    member.gender = "남"; 
+		    member.age = parseInt((date - 1900 - ssn_sub) + 2);
+	    	break;
+	    	
+	    case 3: case 7:
+		    member.gender = "남"; 
+		    member.age = parseInt((date - 2000 - ssn_sub) + 2);
+		    break;
+		    
+	    case 2: case 6:
+		    member.gender = "여";
+		    member.age = parseInt((date - 1900 - ssn_sub) + 2);
+		    break;
+		    
+	    case 4: case 8:
+		    member.gender = "여";
+		    member.age = parseInt((date - 2000 - ssn_sub) + 2);
+		    break;
+		    
+		default :
+			member.gender = "default 값을 입력했습니다.";
+		    break;
+	}
+	document.querySelector('#result_name').innerHTML = member.name;
+	document.querySelector('#result_age').innerHTML = member.age;
+	document.querySelector('#result_gender').innerHTML = member.gender;
+}
+
+function account_deposit(){
+	var money = document.querySelector('#money').value;
+    document.querySelector('#rest_money').innerHTML = money;    
+}
+
+function account_withdraw(){
+	var money = document.querySelector('#money').value;
+	document.querySelector('#rest_money').innerHTML = -money;
 }
 
 /*kaup*/

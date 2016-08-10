@@ -3,11 +3,11 @@
 	width: 100%;
 }
 
-#formbox{
-	float: left;
+.formbox{
 	padding: 20px;
 	margin: 0 auto;
     border: 1px solid #999999; 
+    display: block
 }
 
 #databox{
