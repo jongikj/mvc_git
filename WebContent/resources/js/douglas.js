@@ -13,19 +13,19 @@ var context = {
 		this.setContext(context);
 		console.log('CONTEXT : ' + this.name);
 		
-		bt_bom.addEventListener('click', bom_go, false);
-		bt_dom.addEventListener('click', dom_go, false);
-		bt_kaup.addEventListener('click', kaup_go, false);
-		bt_creator.addEventListener('click', creator_go, false);
+		bt_bom.addEventListener('click', this.bom_go, false);
+		bt_dom.addEventListener('click', this.dom_go, false);
+		bt_kaup.addEventListener('click', this.kaup_go, false);
+		bt_creator.addEventListener('click', this.creator_go, false);
 	},
 	bom_go : function(){
-		location.href = getContext() + '/douglas.do?page=bom'; 		
+		location.href = this.name + '/douglas.do?page=bom'; 		
 	},
 	dom_go : function(){
-		location.href = getContext() + '/douglas.do?page=dom';		
+		location.href = this.name + '/douglas.do?page=dom';		
 	},
 	creator_go : function(){
-		location.href = getContext() + '/douglas.do?page=creator';		
+		location.href = this.name + '/douglas.do?page=creator';		
 	}
 };
 
@@ -38,13 +38,14 @@ function getContext(){
 function setContext(context){
 	this.context = context;
 }
-
-function creator_init(){ 
-    document.querySelector('#bt_spec_show').addEventListener('click', member_spec, false);
-    document.querySelector('#bt_make_account').addEventListener('click', account_spec, false);
-    document.querySelector('#bt_deposit').addEventListener('click', account_deposit, false);
-    document.querySelector('#bt_withdraw').addEventListener('click', account_withdraw, false);
-}
+var create = {
+	creator_init : function() {
+		document.querySelector('#bt_spec_show').addEventListener('click', member_spec, false);
+		document.querySelector('#bt_make_account').addEventListener('click', account_spec, false);
+		document.querySelector('#bt_deposit').addEventListener('click', account_deposit, false);
+		document.querySelector('#bt_withdraw').addEventListener('click', account_withdraw, false);
+	}
+};
 
 function account_spec(){  //JSON 표기법 (객체 리터럴)
 	var account = {

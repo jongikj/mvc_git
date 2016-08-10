@@ -9,6 +9,6 @@ var global  = {
 		bt.onclick = this.move(this.context);
 	},
 	move : function() {
-		location.href = this.context + "/douglas.do?";
+		location.href = this.context + "/douglas.do";
 	}
 };
