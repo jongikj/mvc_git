@@ -15,5 +15,5 @@
 <jsp:include page="../global/footer.jsp"/>
 <jsp:include page="../global/end.jsp"/>
 <script>
-    window.onload = init();
+    douglas.init();
 </script>

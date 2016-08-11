@@ -9,7 +9,7 @@
 <section class="formbox"> 
     <p>회원 정보 입력</p>
     NAME : <input type="text" id="name" name="name" value="" />
-    SSM : <input type="text" id="ssn" name="ssn" value="" />
+    SSN : <input type="text" id="ssn" name="ssn" value="" />
     <button id="bt_spec_show">회원정보생성</button>
     <button id="bt_make_account">통장개설</button>
 </section>
@@ -32,5 +32,5 @@
 <jsp:include page="../global/footer.jsp"/>
 <jsp:include page="../global/end.jsp"/>
 <script>
-    window.onload = creator_init();
+    account.init();
 </script>

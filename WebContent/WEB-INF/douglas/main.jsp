@@ -18,5 +18,5 @@
 <script src="${js}/application.js"></script>
 <script src="${js}/douglas.js"></script>
 <script>
-    douglas.init(application.getContextPath());
+    douglas.init();
 </script>
