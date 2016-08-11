@@ -8,7 +8,7 @@ var application = (function(){
 	var to_douglas = function() {
 		location.href = context + "/douglas.do";
 	};
-	getContextPath = function() {
+	var getContextPath = function() {
 		return context;
 	};
 	return {
